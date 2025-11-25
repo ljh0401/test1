@@ -24,3 +24,8 @@ jobs:
         run: |
             SHORT_SHA=${COMMIT_SHA:0:8}
             echo "SHORT_SHA=$SHORT_SHA" >> "$GITHUB_ENV"
+      - name: print 3
+        run: |
+            SHORT_S=$(git rev-parse --short=8 HEAD)
+            echo "SHORT_S=$SHORT_S" >> "$GITHUB_ENV_SHA"
+            
