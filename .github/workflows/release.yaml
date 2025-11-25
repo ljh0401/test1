@@ -1,0 +1,22 @@
+name: test
+
+on:
+    release:
+        types: [published]
+
+env:
+    RELEASE_VERSION: ${{ github.event.release.tag_name }}
+    COMMIT_SHA: ${{ github.sha }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout release commit
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.release.tag_name }}   
+      - name: print
+        run: |
+            printf "${{ env.RELEASE_VERSION}}"
+            printf "${{ env.COMMIT_SHA }}"
